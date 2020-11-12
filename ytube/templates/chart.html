@@ -1,0 +1,92 @@
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Welcome</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="https://github.com/shaurya172">My Github <span class="sr-only">(current)</span></a>
+      </li>
+      </ul>
+</nav>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Sentiment ML API</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+	<div class = "mx-2 my-5">
+		<div class="container-fluid">
+			
+			<div class="row">
+				<div class= "col"></div>
+				<div class = "col-6 my-5">
+					<h1>Sentiment Analysis</h1><br>
+					<form method='post'>	
+						{% csrf_token %}
+						{{form|crispy}}
+						<br>
+						
+						<button type='submit' class="btn btn-primary">Submit</button>
+					</form>
+					<br>
+				</div>
+				<div id = "myChart"></div>
+				<div class="col">
+					<div class = "mt-5">
+						<h4>
+						{% if messages %}
+						<ul class="messages">
+					    {% for message in messages %}
+					    <div  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> 
+					    {{ message }} </div>
+					    {% endfor %}
+						</ul>
+						{% endif %}
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<script>
+	var chartData = {
+		"type" : "bar",
+		"scale-x" :{
+			"values":[
+			"Positive",
+			"Negatve",
+			"Neutral"
+		]
+	},
+	"series": [
+		{
+			"values":[
+				10,
+				8,
+				13,
+			]
+
+		}
+	]
+}
+
+zingchart.render({
+	id : "myChart",
+	data : chartData,
+});
+</script>
+{% endblock %}	
+</body>
+</html>

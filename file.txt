@@ -1,0 +1,5 @@
+Sentiment Analysis of the video:
+ Negative Comments: 4
+ Positive Comments: 3
+ Neutral_comments: 2
+ Overall Emotion: -0.09319999999999995
