@@ -1,0 +1,5 @@
+Sentiment Analysis of the video:
+ Negative Comments: 2
+ Positive Comments: 39
+ Neutral_comments: 13
+ Overall Emotion: 23.474500000000003
